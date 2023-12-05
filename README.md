@@ -5,10 +5,14 @@ This is a set of microservices and scripts for servicing the platform, running o
 ## Features
 
 * API
-  * underlying APRs
-  * proxying DeX aggregator APIs
-* HardWork resolver
-* Rebalance resolver
+  * `/`
+    * Underlyings
+      * [x] Gamma QuickSwap Polygon
+  * `/swap/:chainId/:src/:dst/:amountIn`
+    * [x] 1inch
+    * [ ] openocean
+* [ ] HardWork resolver
+* [ ] Rebalance resolver
 
 ## Stack
 

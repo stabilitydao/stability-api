@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { MainReply, Underlyings } from './api.types';
+import { AggSwapData, MainReply, Underlyings } from './api.types';
 import { firstValueFrom } from 'rxjs';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
@@ -11,6 +11,43 @@ export class AppService {
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private readonly httpService: HttpService
   ) {}
+
+  async getAggSwap(chainId: number, src: string, dst: string, amountIn: string): Promise<AggSwapData[]> {
+    const r: AggSwapData[] = []
+
+    console.log('chainId', chainId)
+    console.log('src', src)
+    // 1inch
+    const config = {
+      headers: {
+        "Authorization": "Bearer 58hod1q3rzkUyQ0fjqetaR2nBWmzIMQ0"
+      },
+      params: {
+        src,
+        dst,
+        amount: amountIn,
+        slippage: "5",
+        disableEstimate: "true",
+        from: '0x0000000000000000000000000000000000000000',
+      },
+    };  
+
+    const inchReply = await firstValueFrom(this.httpService.get(`https://api.1inch.dev/swap/v5.2/${chainId}/swap`, config))
+    if (inchReply && inchReply.data && inchReply.data.toAmount) {
+      r.push({
+        router: inchReply.data.tx.to,
+        src,
+        dst,
+        amountIn,
+        amountOut: inchReply.data.toAmount,
+        txData: inchReply.data.tx.data,
+
+      })
+    }
+    // console.log('r', inchReply.data)
+
+    return r
+  }
 
   async getAll(): Promise<MainReply> {
     const underlyings: Underlyings = {}

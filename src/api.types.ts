@@ -3,6 +3,15 @@ export type MainReply = {
     underlyings: Underlyings
 }
 
+export type AggSwapData = {
+    router: string
+    src: string
+    dst: string
+    amountIn: string
+    amountOut: string
+    txData: string
+}
+
 export type Underlyings = {
     [chainId: number]: {
         [addr:string]: Underlying
