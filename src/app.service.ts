@@ -4,23 +4,24 @@ import { AggSwapData, MainReply, Underlyings } from './api.types';
 import { firstValueFrom } from 'rxjs';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AppService {
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
-    private readonly httpService: HttpService
+    private readonly httpService: HttpService,
+    private configService: ConfigService
   ) {}
 
   async getAggSwap(chainId: number, src: string, dst: string, amountIn: string): Promise<AggSwapData[]> {
     const r: AggSwapData[] = []
 
-    console.log('chainId', chainId)
-    console.log('src', src)
     // 1inch
+    const apiKey = this.configService.get<string>('ONE_INCH_API');
     const config = {
       headers: {
-        "Authorization": "Bearer 58hod1q3rzkUyQ0fjqetaR2nBWmzIMQ0"
+        "Authorization": `Bearer ${apiKey}`,
       },
       params: {
         src,
