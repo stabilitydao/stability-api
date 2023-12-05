@@ -6,6 +6,7 @@ This is a set of microservices and scripts for servicing the platform, running o
 
 * API
   * underlying APRs
+  * proxying DeX aggregator APIs
 * HardWork resolver
 * Rebalance resolver
 
