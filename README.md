@@ -2,7 +2,7 @@
 
 This is a set of microservices and scripts for servicing the platform, running on a managed server.
 
-API endpoint: `https://api.stabilitydao.org:3000/`
+API endpoint: `https://api.stabilitydao.org`
 
 ## Features
 
