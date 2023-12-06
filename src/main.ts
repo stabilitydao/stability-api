@@ -14,6 +14,6 @@ async function bootstrap() {
   } : {};
   
   const app = await NestFactory.create(AppModule, options);
-  await app.listen(3000);
+  await app.listen(sslMustBe ? 443 : 3000);
 }
 bootstrap();
