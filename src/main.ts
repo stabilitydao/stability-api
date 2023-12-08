@@ -15,7 +15,12 @@ async function bootstrap() {
   
   const app = await NestFactory.create(AppModule, options);
   app.enableCors({
-    origin: ["https://stabilitydao.org", "https://alpha.stabilitydao.org", "http://localhost:4321"],
+    origin: [
+      "https://stability.farm",
+      "https://stabilitydao.org",
+      "https://alpha.stabilitydao.org",
+      "http://localhost:4321",
+    ],
   });
   await app.listen(sslMustBe ? 443 : 3000);
 }
