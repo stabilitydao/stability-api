@@ -6,6 +6,7 @@ import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { HardWorkService } from './hardwork/hardwork.service';
+import { MerklService } from './merkl/merkl.service';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { HardWorkService } from './hardwork/hardwork.service';
   providers: [
     AppService,
     HardWorkService,
+    MerklService,
   ],
 })
 export class AppModule {}
