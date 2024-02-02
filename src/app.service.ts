@@ -96,11 +96,12 @@ export class AppService {
           address: addr,
           name: uData?.name,
           apr: {
-            daily: uData?.returns?.daily,
-            monthly: uData?.returns?.daily,
-            allTime: uData?.returns?.allTime,
+            daily: uData?.returns?.daily?.feeApr ? 100 * uData?.returns?.daily?.feeApr : 0,
+            monthly: uData?.returns?.daily?.feeApr ? 100 * uData?.returns?.daily?.feeApr : 0,
+            allTime: uData?.returns?.allTime?.feeApr ? 100 * uData?.returns?.allTime?.feeApr : 0,
             status: uData?.returns?.status,
-          }
+          },
+          provider: 'Gamma API',
         } 
         underlyings[chainId][addr] = u
       }
@@ -197,7 +198,8 @@ export class AppService {
               // monthly: uData?.returns?.daily,
               // allTime: uData?.returns?.allTime,
               // status: uData?.returns?.status,
-            }
+            },
+            provider: 'DefiEdge API',
           } 
           underlyings[chainId][uData.address] = u
         }
