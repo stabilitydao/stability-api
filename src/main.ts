@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import 'dotenv/config'
 import { HardWorkService } from './hardwork/hardwork.service';
 import { MerklService } from './merkl/merkl.service';
+import { AppService } from './app.service';
 
 async function bootstrap() {
   const sslMustBe = !!process.env.SSL_KEY && !!process.env.SSL_CERT
@@ -16,6 +17,10 @@ async function bootstrap() {
   } : {};
   
   const app = await NestFactory.create(AppModule, options);
+
+  if (!(await app.resolve(AppService)).checkConfig()) {
+    process.exit(-1)
+  }
 
   if (!(await app.resolve(HardWorkService)).checkConfig()) {
     process.exit(-1)

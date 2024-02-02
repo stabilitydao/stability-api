@@ -228,6 +228,8 @@ export class MerklService {
                         if (revertError instanceof ContractFunctionRevertedError) {
                             const errorName = revertError.data?.errorName ?? ''
                             this.logger.debug(errorName)
+                        } else {
+                            console.log(err.details)
                         }
                     } else {
                         console.log(err)

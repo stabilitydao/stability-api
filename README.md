@@ -10,11 +10,12 @@ API endpoint: `https://api.stabilitydao.org`
   * `/`
     * Underlyings
       * [x] Gamma QuickSwap Polygon
+      * [x] DefiEdge strategies
   * `/swap/:chainId/:src/:dst/:amountIn`
     * [x] 1inch
     * [ ] openocean
-* [ ] HardWork resolver
-* [ ] Rebalance resolver
+* [x] HardWork service
+* [x] Merkl HardWork service
 
 ## Stack
 

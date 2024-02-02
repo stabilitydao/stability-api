@@ -1,6 +1,7 @@
 export type MainReply = {
     title: string
     underlyings: Underlyings
+    error?: string
 }
 
 export type AggSwapData = {
