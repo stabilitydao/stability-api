@@ -2,8 +2,15 @@
 
 API endpoint: `https://api.stabilitydao.org`
 
-## Features
+## Routes
 
-* API
-  * `/`
-  * `/swap/:chainId/:src/:dst/:amountIn`
+### `/`
+
+* State
+* Vaults
+* Services
+* Underlyings APRs
+
+### `/swap/:chainId/:src/:dst/:amountIn`
+
+Performs swap by DeX aggregators.
